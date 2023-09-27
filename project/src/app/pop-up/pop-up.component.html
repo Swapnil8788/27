@@ -1,0 +1,121 @@
+<div>
+    <p-dialog header="Add Details" [(visible)]="visible" [style]="{width: '60vw'}" [closable]="true">
+
+        <form [formGroup]="userDetails">
+            <div class="p-grid">
+                <div class=" p-col-6" style="width: 50%;float: left;">
+                    <label>User Name <span>*</span></label>
+                    <div class="m-t-5">
+                        <input type="text" #inputName formControlName="userName" class="inputEl" />
+                        <br>
+                        <!-- <span class="spanWarningEl" *ngIf="userName&&userName.invalid&&userName.touched">Please
+                            enter the UserName</span> -->
+                    </div>
+                </div>
+                   <!-- REFERENCE CODE -->
+                <!-- <div class="p-col-12">
+                <label class="txt-style">Asset Class<font *ngIf="validateAssetClass" class="validation-red">*</font></label>
+                <div class="m-t-5">
+                    <p-dropdown placeholder="Select Asset Class" autoResize="autoResize"
+                        formControlName="assetClass" [options]="assetClassOptions"
+                        [(ngModel)]="map.assetClass" appendTo="body" dropdownIcon="fa fa-sort"
+                        (onChange)="onChangeAssetClass($event)"
+                        [filter]="true" [resetFilterOnHide]="true">
+                    </p-dropdown>
+                </div>
+                <div class="validation-red">
+                    <span
+                        *ngIf="!newsLetterMappingForm.controls['assetClass'].valid && (newsLetterMappingForm.controls['assetClass'].dirty || newsLetterMappingForm.controls['assetClass'].touched) ">Please
+                        Select Asset Class</span>
+                </div>
+            </div> -->
+    
+    
+                <div class="p-col-6" style="float: right;width: 50%;">
+                    <label for="userId">Id <span>*</span></label>
+                    <div class="m-t-5">
+                        <input type="number" #inputId formControlName="userId" class="inputEl">
+                        <br>
+                        <!-- <span *ngIf="userId&&userId.touched&&userId.invalid">Please enter the Id</span> -->
+                    </div>
+                </div>
+                <br>
+    
+                <div class="p-col-6" style="float: left;width: 50%;">
+                    <label>Email <span>*</span></label>
+                    <div class="m-t-5">
+                        <input type="text" #inputWeight formControlName="userEmail" class="inputEl">
+                        <br>
+                        <!-- <span class="spanWarningEl" *ngIf="userEmail&&userEmail.invalid&&userEmail.touched">Please
+                            enter the email</span> -->
+                    </div>
+    
+                </div>
+                <div class="p-col-6" style="float: right;width: 50%;">
+                    <label>Ph <span>*</span></label>
+                    <div class="m-t-5">
+                        <input type="number" #inputMobile formControlName="userPhone" class="inputEl">
+                        <br>
+                        <!-- <span *ngIf="userPhone.invalid && userPhone.touched">Please enter the Mobile number</span> -->
+                    </div>
+                </div>
+                <div class="p-col-6" style="float: left;width: 50%;">
+                    <label>Date of Birth <span>*</span></label>
+                    <div class="m-t-5">
+                        <input type="date" #inputage formControlName="userDOB" class="inputEl">
+                    </div>
+    
+                </div>
+    
+                <div class="p-col-6" style="float: right;width: 50%;"> Gender <span>*</span>
+                    <input type="radio" id="male" name="userGender" value="male" #inputMale formControlName="userGender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="userGender" value="female" #inputFemale formControlName="userGender">
+                    <label for="female">Female</label>
+    
+                </div>
+                <div class="p-col-6" style="float: left;width: 50%;">
+                    <label for="loc">Location <span>*</span></label>
+                    <br>
+                    <select name="location" id="loc" #inputLocation formControlName="userLocation" class="inputEl">
+                        <option value="Hyderabad" selected>Hyderabad</option>
+                        <option value="Benguluru">Benguluru</option>
+                        <option value="Chennai">chennai</option>
+                        <option value="Mumbai">Mumbai</option>
+                    </select>
+                </div>
+                <div class="p-col-6" style="float: right;width: 50%;">
+                    <label>Amount <span>*</span></label>
+                    <div>
+                        <input type="number" #inputPrice formControlName="userPrice" class="inputEl">
+                        <!-- <br>
+                        <span style="color:red;padding-left: 40px;"
+                            *ngIf="userPrice&&userPrice.invalid&&userPrice.touched">Please enter the Amount</span> -->
+                    </div>
+    
+                </div>
+                <div class="editTheCheckbox p-col-6" style="width: 60%;">
+                    <input type="checkbox" id="checkbox" #inputCheckbox >
+                    <label for="checkbox">Admin User</label>
+    
+                </div>
+                <div style="float: left;width: 50%;">
+                    <p-button [disabled]="userDetails.invalid" *ngIf="addUser"
+                        (click)="onAddButton()"
+                        label="" styleClass="p-button-danger">Add Details
+                    </p-button>
+                    <p-button  (onClick)="updateDetails()" #updateButton *ngIf="updateUser"
+                        styleClass="p-button-danger">Update Details
+                    </p-button>
+                </div>
+                    <div style="float: right;width: 50%;">
+                        <p-button (click)="resetNclose()"  styleClass="p-button-info" >Cancel</p-button>
+                    </div>
+    
+            </div>
+        </form>
+        
+    </p-dialog>
+</div>
+
+<!-- <button (click)="click()">Click me to View</button> -->

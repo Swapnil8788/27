@@ -1,0 +1,185 @@
+<!-- <h1>Users List</h1> -->
+<div class="p-col-12">
+    <span style="float: left;"> Users List</span>
+    <span style="float: right;">
+        <p-button (click)="showDialog()"  label="Add User" ></p-button>
+    </span>
+</div>
+<!-- Table -->
+<div class="p-col-12" style="margin-top: 45px;">
+    <p-table [value]="userServices.userDetailsInService" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td> {{product.userId}}</td>
+                <td>{{ product.userName }}</td>
+                <td>{{ product.userDOB }}</td>
+                <td>{{ product.userEmail }}</td>
+                <td>{{ product.userPhone }}</td>
+                <td>{{ product.userGender }}</td>
+                <td>{{product.userLocation}}</td>
+                <td>{{product.userPrice}}</td>
+                <td>
+                    <i class="fa-solid fa-pen-to-square" (click)="editUser(product.userId)" 
+                        style="padding-right: 23px;"></i>
+                    <i class="fa-solid fa-trash" (click)="onDelete(product.userId)"></i>
+                </td>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<!-- Dialogue box -->
+<app-pop-up *ngIf="childVisibleComponent" [visibleP]="visible"   (visibleC)="visibleC($event)" ></app-pop-up>
+
+
+
+
+
+
+<!-- <div class="p-col-12" style="margin-top: 0px !important;">
+<span style="float: left;" class="usersListHeading">Users List</span>
+<span style="float: right;">
+    <p-button (click)="showDialog()" label="Add User" class="addButton"></p-button>
+</span>
+</div> 
+<div style="margin-top: 20px !important" class="p-col-12">
+<p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date Of Birth</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td> {{product.id}}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.age }}</td>
+            <td>{{ product.email }}</td>
+            <td>{{ product.phone }}</td>
+            <td>{{ product.Gender }}</td>
+            <td>{{product.Location}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <i class="fa-solid fa-pen-to-square" (click)="edittheRow(product.id)" *ngIf="product.edit"
+                    style="padding-right: 23px;"></i>
+                <i class="fa-solid fa-trash" (click)="onDelete(product.id)"></i>
+            </td>
+    </ng-template>
+</p-table>
+</div> -->
+
+
+
+<!-- <p-button (click)="showDialog()"   label="Add Details to the Table"
+class="addButton"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [style]="{width: '50vw'}">
+<div class="labelContainer">
+    <label>Enter the name</label>
+
+    <input type="text" class="inputEl1" #inputName />
+
+</div>
+
+<div class="labelContainer">
+    <label>Enter the age</label>
+
+    <input type="number" class="inputEl2" #inputage>
+
+</div>
+<div class="labelContainer">
+    <label>Enter the Weight</label>
+
+    <input type="number" class="inputEl3" #inputWeight>
+
+</div>
+<div class="labelContainer">
+    <label>Enter the Height</label>
+
+    <input type="number" class="inputEl4" #inputHeight>
+
+</div>
+<div>
+    <input type="radio" id="male" name="fav_language" value="male" #inputMale>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="fav_language" value="female" #inputFemale>
+    <label for="female">Female</label>
+
+</div>
+<div class="labelContainer">
+    <label>Enter the Amount</label>
+
+    <input type="number" class="inputEl5" #inputPrice>
+
+</div>
+<p-button (click)="onAddButton(inputName,inputage,inputWeight,inputHeight,inputMale,inputFemale,inputPrice)" label=""
+    styleClass="p-button-danger">Add Details</p-button>
+
+</p-dialog> -->
+
+<!-- <div class="addColumn">
+<p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Gender</th>
+            <th>Checkbox</th>
+            <th>Price</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.age }}</td>
+            <td>{{ product.height }}</td>
+            <td>{{ product.weight }}</td>
+            <td>{{ product.Gender }}</td>
+            <td>
+                <input type="checkbox" (click)="checkboxFun(checkbox)" #checkbox >
+            </td>
+            <td *ngIf="priceElement;else pricecolum">{{product.price}}</td>
+            <ng-template #pricecolum>
+                <td [pEditableColumn]="product.price" pEditableColumnField="price" >
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.price" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product.price }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+            </ng-template>
+        </tr>
+    </ng-template>
+</p-table>
+
+</div> -->
+<!-- <div > {{products.userName}}</div> -->
+<button (click)="click()">  Click</button>

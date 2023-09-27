@@ -100,11 +100,11 @@
     
                 </div>
                 <div style="float: left;width: 50%;">
-                    <p-button [disabled]="userDetails.invalid" *ngIf="addUser"
+                    <p-button *ngIf="addUser" 
                         (click)="onAddButton()"
-                        label="" styleClass="p-button-danger">Add Details
+                         styleClass="p-button-danger">Add Details
                     </p-button>
-                    <p-button  (onClick)="updateDetails()" #updateButton *ngIf="updateUser"
+                    <p-button (onClick)="updateDetails()" *ngIf="!addUser"
                         styleClass="p-button-danger">Update Details
                     </p-button>
                 </div>
@@ -118,4 +118,4 @@
     </p-dialog>
 </div>
 
-<!-- <button (click)="click()">Click me to View</button> -->
+<button (click)="click()">Click me to View</button>

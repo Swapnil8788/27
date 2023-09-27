@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../users.service';
-import { EventEmitter,Input,Output } from '@angular/core';
-
+import { EventEmitter, Input, Output } from '@angular/core';
+import { PopUpComponent } from "../pop-up/pop-up.component"
 @Component({
   selector: 'app-table-of-user',
   templateUrl: './table-of-user.component.html',
@@ -9,7 +9,9 @@ import { EventEmitter,Input,Output } from '@angular/core';
 })
 export class TableOfUserComponent {
   visible: boolean = true
-  childVisibleComponent:boolean
+  childVisibleComponent: boolean
+  addUser: boolean;
+  updateDetailsObject:any = {}
   // priceElement: boolean = false
   // id: number = -1
   // addUser: boolean = true
@@ -28,45 +30,54 @@ export class TableOfUserComponent {
   // @ViewChild('inputLocation') inputLocation:any;
   // locationButton:string ;
   // @ViewChild('inputage') inputage;
-  
+
 
   @Output() addedUserToTable = new EventEmitter<boolean>()
 
   // inputId: number;
   // indexOfProduct: any;
   // ngOnInit() {
-    // }
-    // gender: string;
-    // location: string;
+  // }
+  // gender: string;
+  // location: string;
+
+  constructor(public userServices: ProductService,
+    public popUp: PopUpComponent) { };
+  ngOnInit(): void {
+
+  }
+  ngOnChanges(): void {
+
+
+  }
+
+  showDialog() {
+    this.childVisibleComponent = true
+    this.visible = true;
+    this.addUser = true
+
+
+    // this.addUser = true;
+    // this.UpdateUser = false
+  }
+  visibleC(event: boolean) {
+    this.visible = event
+  }
+  editUser(id: number) {
+    this.childVisibleComponent = true
+    this.visible = true;
+    this.addUser = false
+    this.popUp.updateDetails(id)
+    this.updateDetailsObject = this.userServices.userDetailsInService.filter((user)=>user.userId == id)
     
-    constructor(public userServices:ProductService){};
-    ngOnInit(): void {
-      
-    }
-    ngOnChanges(): void {
-      
-      
-    }
+    
 
-    showDialog() {
-      this.childVisibleComponent = true
-      this.visible = true;
-      
-      
-      // this.addUser = true;
-      // this.UpdateUser = false
-    }
-    visibleC(event:boolean){
-      this.visible = event
-    }
-    editUser(id:number){
 
-      
-    }
-    onDelete(id:number){
-      this.userServices.userDetailsInService = this.userServices.userDetailsInService.filter((user)=>user.userId!==id)
-      
-    }
+  }
+  onDelete(id: number) {
+    this.userServices.userDetailsInService = this.userServices.userDetailsInService.filter((user) => user.userId !== id)
+
+  }
 
 
   // onAddButton(inputId: HTMLInputElement,
@@ -111,7 +122,7 @@ export class TableOfUserComponent {
 
   //   };
   //   console.log(this.userDetails,'userDetails');
-    
+
   //   this.products = [...this.products, newProduct];
   //   inputName.value = ""
   //   inputage.value = ""
@@ -131,7 +142,7 @@ export class TableOfUserComponent {
   //   this.showDialog()
   //   this.addUser = false;
   //   this.UpdateUser = true
-    
+
   //   this.products.filter((product)=>{
   //     if(product.id === id){
   //       this.productName = product.name
@@ -148,7 +159,7 @@ export class TableOfUserComponent {
   //       }else{
   //         this.locationButton = "Mumbai"
   //       }
-        
+
   //     }
   //   })
 
@@ -249,12 +260,11 @@ export class TableOfUserComponent {
   // clickme(){
   //   this.date = new Date(this.inputage.nativeElement.value) 
   //   console.log(this.date.getDate());
-    
-    
+
+
   // }
 
-  click(){
-    
+  click() {
   }
 
 

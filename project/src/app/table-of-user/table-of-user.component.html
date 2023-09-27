@@ -44,7 +44,7 @@
 
 
 <!-- Dialogue box -->
-<app-pop-up *ngIf="childVisibleComponent" [visibleP]="visible"   (visibleC)="visibleC($event)" ></app-pop-up>
+<app-pop-up *ngIf="childVisibleComponent" [visibleP]="visible" [addUser] = "addUser" [updateDetailsObject] = "updateDetailsObject"  (visibleC)="visibleC($event)" ></app-pop-up>
 
 
 

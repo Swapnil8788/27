@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { outputAst } from '@angular/compiler';
 import { Validators } from '@angular/forms';
 import { ProductService } from "./../users.service"
-
+@Injectable({
+  providedIn: 'root',
+ })
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
@@ -11,15 +13,17 @@ import { ProductService } from "./../users.service"
 })
 export class PopUpComponent {
   visible: boolean = true
-  addUser:boolean = true;
   updateUser:boolean = false
   users:any[]= []
   usersArray:any[] = this.userServices.userDetailsInService
+  updateDetailsObjectC:any = {}
 
 
 
   @Input() visibleP: boolean;
   @Input() editId;
+  @Input() addUser
+  @Input() updateDetailsObject;
 
   @Output() visibleC = new EventEmitter<boolean>()
 
@@ -79,14 +83,20 @@ export class PopUpComponent {
 
   }
   onAddButton(){
+    this.addUser = true
     this.users.push(this.userDetails.value)
     this.userServices.userDetailsInService = [...this.usersArray,...this.users]
     this.visible = false
     this.visibleC.emit(false)
     
   }
-  updateDetails(){
-    console.log("update details opened");
+  updateDetails(id?){
+    this.addUser = false
+    
+    
+    this.updateDetailsObjectC = this.userServices.userDetailsInService.filter((user)=>user.userId==id)
+
+    
     
 
   }
@@ -101,6 +111,7 @@ export class PopUpComponent {
   }
 
   click(){
+    console.log(this.updateDetailsObject);
     
   }
 
